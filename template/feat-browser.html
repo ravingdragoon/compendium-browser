@@ -11,14 +11,14 @@
                     <option value="false">{{localize "DND5E.ItemTypeClass"}}</option>
                 </select></dd>
             </dl> 
-            <button id="reset-feat-filter">{{localize "CMPBrowser.Filters.ResetFilters"}}</button>
+            <button id="reset-feat-filter" data-action="reset-filters">{{localize "CMPBrowser.Filters.ResetFilters"}}</button>
         </div>
         {{> "modules/compendium-browser/template/filter-container.html" filters=featFilters}}
     </div>
     <div class="list-area flexcol">
         <span id="CBFeatsMessage" style="flex:0"></span>
-        <ul id="CBFeats">
-            {{> "modules/compendium-browser/template/feat-browser-list.html" feats=items}}
+        <ul id="CBFeats" class="cb_entities">
+            {{> "modules/compendium-browser/template/entity-browser-list.html" feats=items}}
         </ul>
     </div>
 

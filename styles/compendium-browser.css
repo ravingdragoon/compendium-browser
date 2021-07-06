@@ -7,14 +7,25 @@
 .compendium-browser {
   overflow-y: hidden!important;
   max-width: 1100px;
-  max-height: 90vh;
 }
+
+.compendium-browser .info {
+  padding: 0.25em 0.6em;
+  text-align: center;
+  border: 1px solid #acacac;
+  display: inline-block;
+  margin: auto;
+  background: rgba(0,0,0,0.3);
+  border-radius: 0.3em;
+  color: #cecece;
+}
+
 .compendium-browser .window-content {
   overflow-y: hidden!important;
   height: 100%;
+  padding: 0.5em 0.5em 0 0.5em;
 }
 .compendium-browser .window-content .parent {
-  overflow-y: hidden!important;
   height: 100%;
 }
 .compendium-browser .window-content .parent .content {
@@ -53,21 +64,21 @@
   position: sticky;
   display: block;
   min-width: 250px;
-  max-width: 45%;
+  max-width: 8vw;
   width: 350px;
   height: 100%;
   padding-right: 5px;
-  overflow: scroll;
+  overflow-y: scroll;
+  flex-grow: 1;
 }
 .compendium-browser .list-area {
   position: sticky;
   display: flex;
   min-width: 250px;
-  max-width: 55%;
-  width: 400px;
   height: 100%;
   padding-right: 5px;
-  overflow-y: scroll;
+  /**overflow-y: scroll;**/
+  flex-grow: 2;
 }
 .compendium-browser .control-area button {
   background: rgba(0, 0, 0, 0.05);
@@ -135,7 +146,7 @@
 .compendium-browser .browser .window-content {
   overflow-y: hidden!important;
 }
-.compendium-browser .browser ul {
+.compendium-browser .browser .list-area ul {
   float: right;
   display: block;
   min-width: 335px;
@@ -159,24 +170,20 @@
   display: inline-block;
   min-width: 15px;
 }
-.compendium-browser .item-browser li,
-.compendium-browser .feat-browser li,
-.compendium-browser .spell-browser li {
+.compendium-browser .item-browser > li,
+.compendium-browser .feat-browser > li,
+.compendium-browser .spell-browser > li {
   cursor: default;
   vertical-align: middle;
   line-height: 32px;
   margin: 2px 0;
 }
-.compendium-browser .item-browser li .item-image,
-.compendium-browser .feat-browser li .item-image,
-.compendium-browser .spell-browser li .item-image {
-  max-width: 32px;
-  height: 32px;
-}
-.compendium-browser .item-browser li .item-name,
-.compendium-browser .feat-browser li .item-name,
-.compendium-browser .spell-browser li .item-name {
-  height: 32px;
+
+.compendium-browser .browser li:nth-child(odd) {
+  background: rgba(0, 0, 0, 0.05);
+ }
+
+.compendium-browser .browser li .item-name {
   padding-left: 5px;
 }
 .compendium-browser .item-browser li .feat-tags,
@@ -185,11 +192,10 @@
 .compendium-browser .item-browser li .item-tags,
 .compendium-browser .feat-browser li .item-tags,
 .compendium-browser .spell-browser li .item-tags {
-  text-align: right;
+  text-align: justify;
   margin-right: 3px;
   margin-left: 3px;
   text-transform: capitalize;
-  height: 32px;
 }
 .compendium-browser .spell-browser .spell .spell-level {
   text-align: center;
@@ -257,3 +263,115 @@
   vertical-align: middle;
   height: 100%;
 }
+
+.compendium-browser .actions {
+    flex: 0 0 32px;
+    box-sizing: content-box;
+    flex: 0 0 32px;
+    /* margin: 0 0 5px; */
+    background: rgb(86 85 78 / 18%);
+    border-radius: 0 0 0.5em 0.5em;
+    padding: 0 0.7em;
+}
+.compendium-browser .actions ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row-reverse;
+}
+.compendium-browser .actions li {
+  box-sizing: content-box;  
+}
+.compendium-browser .actions li button {
+  cursor: pointer;
+  color: #ededed;
+  background-color: #444;
+  border-left: 1px dotted rgba(0, 0, 0, 0.05);
+  border-radius: 0;
+}
+
+.compendium-browser .cb_entities .item {
+  border-left: 0.3em solid #ccc;
+  border-bottom: 1px dotted #ccc; 
+  line-height: 1em;
+    display: grid; 
+    grid-template-columns: 0.2fr 0.8fr 1fr;
+    grid-template-rows: 1fr 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "Image Name Tags"
+      "Image ItemTags Tags";
+}
+
+.compendium-browser .cb_entities ul.tags {
+  list-style: none;  
+  min-width: initial;
+  box-sizing: content-box;
+  display: inline-block;
+}
+.compendium-browser .cb_entities .item-tags{
+  padding-left: 0.5em;
+  grid-area: ItemTags;
+}
+
+.compendium-browser .cb_entities .spell-tags,
+.compendium-browser .cb_entities .misc-tags {
+  grid-area: Tags;
+}
+
+.compendium-browser .cb_entities .tags li{
+  font-size: 0.8em;  
+  line-height: initial;
+  display: inline-block;
+  border: 1px solid #acacac;
+  padding: 0.2em;
+  border-radius: 0.2em;
+  line-height: initial;
+}
+
+.compendium-browser .cb_entities .item-image {
+  grid-area: Image;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+} 
+.compendium-browser .cb_entities .item-name {
+  grid-area: Name;
+  font-size: 1.2em;
+  line-height: initial;
+  display: inline;
+}
+
+.compendium-browser .cb_entities .item.r_common {
+  border-left: 0.3em solid #fff;
+}
+.compendium-browser .cb_entities .item.r_uncommon {
+  border-color: rgb(30,255,0);
+}
+.compendium-browser .cb_entities .item.r_uncommon .item-name,
+.compendium-browser .cb_entities .item.r_uncommon .tags {
+  background: linear-gradient(90deg, rgba(30,255,0,1) 0%, rgba(30,255,0,0) 35%);
+}
+.compendium-browser .cb_entities .item.r_rare {border-color: darkblue;}
+
+.compendium-browser .cb_entities .item.r_rare .item-name,
+.compendium-browser .cb_entities .item.r_rare .item-info {
+  background: linear-gradient(90deg, rgba(0,112,221,1) 0%, rgba(0,112,221,0) 35%);
+}
+.compendium-browser .cb_entities .item.r_veryrare {border-color: #a335ee;}
+
+.compendium-browser .cb_entities .item.r_veryrare .item-name,
+.compendium-browser .cb_entities .item.r_veryrare .item-info {
+  background: linear-gradient(90deg, rgba(163,53,238,1) 0%, rgba(163,53,238,0) 35%);
+}
+
+.compendium-browser .cb_entities .item.r_legendary {border-color: rgb(255,128,0);}
+
+.compendium-browser .cb_entities .item.r_legendary .item-name,
+.compendium-browser .cb_entities .item.r_legendary .item-info {
+  background: linear-gradient(90deg, rgba(255,128,0,1) 0%, rgba(255,128,0,0) 35%);
+}
+
+.compendium-browser .cb_entities .item.r_rare .item-name{color: inherit;}

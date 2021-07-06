@@ -3,21 +3,22 @@
     <h3>{{cat.label}}</h3>
     <div class="filters">
         {{#each cat.filters as |filter key|}}
-        <div class="filter" data-path="{{filter.path}}" data-type="{{filter.type}}" data-valIsArray="{{filter.valIsArray}}">
+        <div class="filter" data-path="{{filter.path}}" data-type="{{filter.type}}"
+            data-valIsArray="{{filter.valIsArray}}">
             {{#if filter.istext}}
-                <dt>{{filter.label}}</dt>
-                <dd>
-                    {{#if filter.possibleValues}}
-                    <select class="null">
-                        <option value="" selected>-</option>
-                        {{#each filter.possibleValues as |label val|}}
-                        <option value="{{val}}">{{label}}</option>
-                        {{/each}}
-                    </select>
-                    {{else}}
-                    <input type="text">
-                    {{/if}}
-                </dd>
+            <dt>{{filter.label}}</dt>
+            <dd>
+                {{#if filter.possibleValues}}
+                <select class="null">
+                    <option value="" selected>-</option>
+                    {{#each filter.possibleValues as |label val|}}
+                    <option value="{{val}}">{{label}}</option>
+                    {{/each}}
+                </select>
+                {{else}}
+                <input type="text">
+                {{/if}}
+            </dd>
             {{/if}}
             {{#if filter.isbool}}
             <dl>
@@ -65,7 +66,7 @@
                         <option value="=">=</option>
                         <option value="<">&lt;</option>
                         <option value=">">&gt;</option>
-                    </select>                    
+                    </select>
                     <input class="small-input" type="number">
                 </dd>
             </div>

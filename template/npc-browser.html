@@ -12,14 +12,14 @@
                     <option value="size">{{localize "DND5E.Size"}}</option>
                 </select></dd>
             </dl>
-            <button id="reset-npc-filter">{{localize "CMPBrowser.Filters.ResetFilters"}}</button>
+            <button id="reset-npc-filter" data-action="reset-filters">{{localize "CMPBrowser.Filters.ResetFilters"}}</button>
         </div>                
         {{> "modules/compendium-browser/template/filter-container.html" filters=npcFilters}}
     </div>
     <div class="list-area flexcol">
         <span id="CBNpcsMessage" style="flex:0"></span>
-        <ul id="CBNPCs">
-            {{> "modules/compendium-browser/template/npc-browser-list.html" npcs=npcs}}
+        <ul id="CBNPCs" class="cb_entities">
+            {{> "modules/compendium-browser/template/entity-browser-list.html" npcs=npcs}}
         </ul>
     </div>
 </div>
