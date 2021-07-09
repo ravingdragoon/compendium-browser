@@ -16,8 +16,7 @@
         {{> "modules/compendium-browser/template/filter-container.html" filters=itemFilters}}
     </div>
     <div class="list-area flexcol">
-        <span id="CBItemsMessage" style="flex:0"></span>
-        <ul id="CBItems" class="cb_entities">
+        <ul id="CBItems" class="cb_entities" data-active-filters="{{items.filters}}">
             {{> "modules/compendium-browser/template/entity-browser-list.html" items=items}}
         </ul>
     </div>        

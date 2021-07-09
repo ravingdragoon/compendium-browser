@@ -1,8 +1,5 @@
 
 <aside class="info">
-    <!--img class="" src="icons/sundries/books/book-open-turquoise.webp" title="Loading book" width="32" height="32"/-->
-    <span class="item-edit" >
-        {{localize "CMPBrowser.LOADING.Message" numLoaded=numLoaded itemType=itemType}}
-        {{#if maxLoaded}}{{localize "CMPBrowser.LOADING.MaxLoaded"}}{{/if}}
-    </span>
+    {{localize "CMPBrowser.LOADING.Message" numLoaded=numLoaded itemType=itemType}}
+    {{#if maxLoaded}}<small>{{localize "CMPBrowser.LOADING.MaxLoaded"}}{{/if}}
 </aside>

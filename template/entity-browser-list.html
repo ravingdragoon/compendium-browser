@@ -1,20 +1,20 @@
 {{#each listItems as |entity|}}
-<li class="item flexrow draggable r_{{entity.rarity}}" 
+<li class="entity flexrow draggable r_{{entity.rarity}}" 
     data-entry-compendium="{{entity.compendium}}"
     data-entry-id="{{entity._id}}"
     data-entry-name="{{entity.name}}"
     data-entry-image="{{entity.img}}"
     >
 
-    <figure class="item-image" data-action="openSheet">
-        <img data-src="{{entity.img}}" title="{{entity.name}}"/>
+    <figure class="entity-image" data-action="openSheet">
+        <img src="icons/svg/daze.svg" data-src="{{entity.img}}" title="{{entity.name}}"/>
     </figure>
 
-    <div class="item-name" data-action="openSheet">
-        <span class="item-edit"><a title="({{entity.compendium}})">{{entity.name}}</a></span>
+    <div class="entity-name" data-action="openSheet">
+        <span class="entity-edit"><a title="({{entity.compendium}})">{{entity.name}}</a></span>
     </div>
 
-        <ul class="tags item-tags">
+        <ul class="tags entity-tags">
             <li title="Compmendium: {{entity.compendium}}"><i class="fas fa-book" ></i></li>
             {{#if entity.type}}
                 <li title="Type: {{entity.type}}">
@@ -25,7 +25,7 @@
                         {{#case 'tool'}}<i class="fas fa-tools"></i>{{/case}}       
                         {{#case 'loot'}}<i class="fas fa-gem"></i>{{/case}} 
                         {{#case 'weapon'}}<i class="fas fa-crosshairs"></i>{{/case}}                         
-                        {{#default entity.type}}{{entity.type}}{{/default}} 
+                        {{#default ''}}{{entity.type}}{{/default}} 
                     {{/switch}}        
                 </li>
             {{/if}}

@@ -70,6 +70,17 @@ export class Filter {
         return true;
     }
 
+    filterElements(list, subjects, filters) {
+        for (let element of list) {
+            let subject = subjects[element.dataset.entryId];
+            if (this.passesFilter(subject, filters) == false) {
+                $(element).hide();
+            } else {
+                $(element).show();
+            }
+        }
+    }
+
     getByName(name) {
         return getProperty(this, name);
     }
@@ -90,6 +101,13 @@ export class Filter {
             registeredFilterCategorys: {},
             activeFilters: {}
         };
+    }
+
+    async addEntityFilters(){
+        await this.addSpellFilters();
+        await this.addFeatFilters();
+        await this.addItemFilters();
+        await this.addNpcFilters();
     }
 
     /**

@@ -170,9 +170,7 @@
   display: inline-block;
   min-width: 15px;
 }
-.compendium-browser .item-browser > li,
-.compendium-browser .feat-browser > li,
-.compendium-browser .spell-browser > li {
+.compendium-browser .entity-browser > li {
   cursor: default;
   vertical-align: middle;
   line-height: 32px;
@@ -183,73 +181,49 @@
   background: rgba(0, 0, 0, 0.05);
  }
 
-.compendium-browser .browser li .item-name {
+.compendium-browser .browser li .entity-name {
   padding-left: 5px;
 }
-.compendium-browser .item-browser li .feat-tags,
-.compendium-browser .feat-browser li .feat-tags,
-.compendium-browser .spell-browser li .feat-tags,
-.compendium-browser .item-browser li .item-tags,
-.compendium-browser .feat-browser li .item-tags,
-.compendium-browser .spell-browser li .item-tags {
+.compendium-browser .entity-browser li .feat-tags,
+.compendium-browser .entity-browser li .item-tags {
   text-align: justify;
   margin-right: 3px;
   margin-left: 3px;
   text-transform: capitalize;
 }
-.compendium-browser .spell-browser .spell .spell-level {
+.compendium-browser .spell-browser .entity .spell-level {
   text-align: center;
   font-weight: 900;
   max-width: 18px;
   height: 32px;
 }
-.compendium-browser .spell-browser .spell .spell-tags {
+.compendium-browser .spell-browser .entity .spell-tags {
   text-align: right;
   margin-right: 3px;
   font-weight: 900;
   max-width: 100px;
   height: 32px;
 }
-.compendium-browser .npc-browser .npc {
-  cursor: default;
-  vertical-align: middle;
-  line-height: 64px;
-  margin: 4px 0;
-}
-.compendium-browser .npc-browser .npc .npc-image {
+
+.compendium-browser .entity-browser .entity .npc-image {
   max-width: 64px;
   height: 64px;
 }
-.compendium-browser .npc-browser .npc .npc-image img {
+.compendium-browser .entity-browser .npc .npc-image img {
   width: 64px;
   height: 64px;
   border: none;
   object-fit: contain;
 }
-.compendium-browser .npc-browser .npc .npc-line {
-  line-height: 25px;
-  padding: 9px 0 5px 5px;
-}
-.compendium-browser .npc-browser .npc .npc-name {
-  font-weight: bold;
-  font-size: 16px;
-}
-.compendium-browser .npc-browser .npc .cr {
-  display: inline-block;
-  width: 55px;
-}
-.compendium-browser .npc-browser .npc .size {
-  display: inline-block;
-  width: 75px;
-}
-.compendium-browser .npc-browser .npc .type {
-  display: inline-block;
-}
+
 .compendium-browser .settings .settings-group {
   border: 1px solid #bbb;
   border-radius: 5px;
   margin-top: 5px;
   padding: 2px;
+  font-size: 0.9em;
+  max-width: fit-content;
+  float: left;
 }
 .compendium-browser .settings .settings-group h3 {
   margin: 0;
@@ -290,7 +264,7 @@
   border-radius: 0;
 }
 
-.compendium-browser .cb_entities .item {
+.compendium-browser .cb_entities .entity {
   border-left: 0.3em solid #ccc;
   border-bottom: 1px dotted #ccc; 
   line-height: 1em;
@@ -299,8 +273,8 @@
     grid-template-rows: 1fr 1fr; 
     gap: 0px 0px; 
     grid-template-areas: 
-      "Image Name Tags"
-      "Image ItemTags Tags";
+      "Image Name SpellTags"
+      "Image EntityTags MiscTags";
 }
 
 .compendium-browser .cb_entities ul.tags {
@@ -309,16 +283,13 @@
   box-sizing: content-box;
   display: inline-block;
 }
-.compendium-browser .cb_entities .item-tags{
+.compendium-browser .cb_entities .entity-tags{
   padding-left: 0.5em;
-  grid-area: ItemTags;
+  grid-area: EntityTags;
 }
 
-.compendium-browser .cb_entities .spell-tags,
-.compendium-browser .cb_entities .misc-tags {
-  grid-area: Tags;
-}
-
+.compendium-browser .cb_entities .spell-tags { grid-area: SpellTags; }
+.compendium-browser .cb_entities .misc-tags {  grid-area: MiscTags;}
 .compendium-browser .cb_entities .tags li{
   font-size: 0.8em;  
   line-height: initial;
@@ -329,49 +300,46 @@
   line-height: initial;
 }
 
-.compendium-browser .cb_entities .item-image {
+.compendium-browser .cb_entities .entity-image {
   grid-area: Image;
-  width: 100%;
-  height: 100%;
+  width: 48px;
+  height: 48px;
   object-fit: cover;
   margin: 0;
   padding: 0;
 } 
-.compendium-browser .cb_entities .item-name {
+.compendium-browser .cb_entities .entity-name {
   grid-area: Name;
   font-size: 1.2em;
   line-height: initial;
   display: inline;
 }
 
-.compendium-browser .cb_entities .item.r_common {
-  border-left: 0.3em solid #fff;
-}
-.compendium-browser .cb_entities .item.r_uncommon {
-  border-color: rgb(30,255,0);
-}
-.compendium-browser .cb_entities .item.r_uncommon .item-name,
-.compendium-browser .cb_entities .item.r_uncommon .tags {
+.compendium-browser .cb_entities .entity.r_common {border-left: 0.3em solid #fff;}
+
+.compendium-browser .cb_entities .entity.r_uncommon {border-color: rgb(30,255,0);}
+.compendium-browser .cb_entities .entity.r_uncommon .entity-name,
+.compendium-browser .cb_entities .entity.r_uncommon .tags {
   background: linear-gradient(90deg, rgba(30,255,0,1) 0%, rgba(30,255,0,0) 35%);
 }
-.compendium-browser .cb_entities .item.r_rare {border-color: darkblue;}
+.compendium-browser .cb_entities .entity.r_rare {border-color: darkblue;}
 
-.compendium-browser .cb_entities .item.r_rare .item-name,
-.compendium-browser .cb_entities .item.r_rare .item-info {
+.compendium-browser .cb_entities .entity.r_rare .entity-name,
+.compendium-browser .cb_entities .entity.r_rare .entity-info {
   background: linear-gradient(90deg, rgba(0,112,221,1) 0%, rgba(0,112,221,0) 35%);
 }
-.compendium-browser .cb_entities .item.r_veryrare {border-color: #a335ee;}
+.compendium-browser .cb_entities .entity.r_veryrare {border-color: #a335ee;}
 
-.compendium-browser .cb_entities .item.r_veryrare .item-name,
-.compendium-browser .cb_entities .item.r_veryrare .item-info {
+.compendium-browser .cb_entities .entity.r_veryrare .item-name,
+.compendium-browser .cb_entities .entity.r_veryrare entity-info {
   background: linear-gradient(90deg, rgba(163,53,238,1) 0%, rgba(163,53,238,0) 35%);
 }
 
-.compendium-browser .cb_entities .item.r_legendary {border-color: rgb(255,128,0);}
+.compendium-browser .cb_entities .entity.r_legendary {border-color: rgb(255,128,0);}
 
-.compendium-browser .cb_entities .item.r_legendary .item-name,
-.compendium-browser .cb_entities .item.r_legendary .item-info {
+.compendium-browser .cb_entities .entity.r_legendary .entity-name,
+.compendium-browser .cb_entities .entity.r_legendary .entity-info {
   background: linear-gradient(90deg, rgba(255,128,0,1) 0%, rgba(255,128,0,0) 35%);
 }
 
-.compendium-browser .cb_entities .item.r_rare .item-name{color: inherit;}
+.compendium-browser .cb_entities .entity.r_rare .entity-name{color: inherit;}

@@ -60,8 +60,6 @@ export class moduleHooks {
                 //A compromise approach would be better (periodic loading) except would still create the memory use problem
                 await game.compendiumBrowser.initialize();
             }
-
-            game.compendiumBrowser.addFilters();
         });
     }
 

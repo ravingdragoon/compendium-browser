@@ -19,7 +19,8 @@ export class ModuleSettings {
         let defaultSettings = {
             loadedCompendium: {
                 Actor: {},
-                Item: {}
+                Item: {},
+                JournalEntry: {}
             }
         };
 
@@ -39,37 +40,10 @@ export class ModuleSettings {
      * 
      * @returns {Array} Settings
      */
-    initSettings() {
+    static initModuleSettings() {
         let defaultSettings = ModuleSettings._getDefaults();
-
-        // creating game setting container
-        this.gs.register(CMPBrowser.MODULE_NAME, SETTINGS, {
-            name: "Compendium Browser Settings",
-            hint: "Settings to exclude packs from loading and visibility of the browser",
-            default: defaultSettings,
-            type: Object,
-            scope: 'world',
-            onChange: settings => {
-                this.settings = settings;
-            }
-        });
-
-        this.gs.register(CMPBrowser.MODULE_NAME, "maxload", {
-            name: game.i18n.localize("CMPBrowser.SETTING.Maxload.NAME"),
-            hint: game.i18n.localize("CMPBrowser.SETTING.Maxload.HINT"),
-            scope: "world",
-            config: true,
-            default: CMPBrowser.MAXLOAD,
-            type: Number,
-            range: {             // If range is specified, the resulting setting will be a range slider
-                min: 200,
-                max: 5000,
-                step: 100
-            }
-        });
-
         // load settings from container and apply to default settings (available compendia might have changed)
-        let settings = this.gs.get(CMPBrowser.MODULE_NAME, SETTINGS);
+        let settings = game.settings.get(CMPBrowser.MODULE_NAME, SETTINGS);
         for (let compKey in defaultSettings.loadedSpellCompendium) {
             if (settings.loadedSpellCompendium[compKey] !== undefined) {
                 defaultSettings.loadedSpellCompendium[compKey].load = settings.loadedSpellCompendium[compKey].load;
@@ -94,7 +68,46 @@ export class ModuleSettings {
         return defaultSettings;
     }
 
+    static registerGameSettings(){
+        // creating game setting container
+        game.settings.register(CMPBrowser.MODULE_NAME, SETTINGS, {
+            name: "Compendium Browser Settings",
+            hint: "Settings to exclude packs from loading and visibility of the browser",
+            default: ModuleSettings._getDefaults(),
+            type: Object,
+            scope: 'world',
+            onChange: settings => {
+                this.settings = settings;
+            }
+        });
+
+        game.settings.register(CMPBrowser.MODULE_NAME, "maxload", {
+            name: game.i18n.localize("CMPBrowser.SETTING.Maxload.NAME"),
+            hint: game.i18n.localize("CMPBrowser.SETTING.Maxload.HINT"),
+            scope: "world",
+            config: true,
+            default: CMPBrowser.MAXLOAD,
+            type: Number,
+            range: {             // If range is specified, the resulting setting will be a range slider
+                min: 200,
+                max: 5000,
+                step: 100
+            }
+        });
+    }
+
     static saveSettings() {
         game.settings.set(CMPBrowser.MODULE_NAME, 'settings', this.settings);
+    }
+
+        filterElements(list, subjects, filters) {
+        for (let element of list) {
+            let subject = subjects[element.dataset.entryId];
+            if (this.passesFilter(subject, filters) == false) {
+                $(element).hide();
+            } else {
+                $(element).show();
+            }
+        }
     }
 }
