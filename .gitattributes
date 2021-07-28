@@ -5,3 +5,5 @@ README.md export-ignore
 preview.jpg export-ignore
 styles/compendium-browser.less export-ignore
 Patchnotes.md export-ignore
+.vscode export-ignore
+docs export-ignore

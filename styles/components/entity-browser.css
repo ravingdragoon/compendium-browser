@@ -1,0 +1,45 @@
+.compendium-browser .browser {
+  display: grid;
+  grid-template-columns: 2em auto 2em;
+  grid-template-areas: "L_SIDEBAR CONTENT R_SIDEBAR";
+  height: 100%;
+  overflow: hidden !important;
+}
+.compendium-browser .browser .window-content {
+  overflow-y: hidden !important;
+}
+.compendium-browser .browser ul .filter-tags {
+  display: none;
+}
+.compendium-browser .browser ul li span {
+  white-space: nowrap;
+  overflow: hidden;
+}
+.compendium-browser .browser .spacer {
+  display: inline-block;
+  min-width: 5px;
+}
+.compendium-browser .browser .spacer-large {
+  display: inline-block;
+  min-width: 15px;
+}
+.compendium-browser .browser.entity-browser > li {
+  cursor: default;
+}
+.compendium-browser .browser.entity-browser li .feat-tags {
+  text-align: justify;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-transform: capitalize;
+}
+.compendium-browser .browser.entity-browser li .item-tags {
+  text-align: justify;
+  margin-right: 3px;
+  margin-left: 3px;
+  text-transform: capitalize;
+}
+.compendium-browser .browser .list-area {
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  grid-area: CONTENT;
+}

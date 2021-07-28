@@ -28,7 +28,7 @@
     "./scripts/**"
   ],
   "esmodules": [
-    "/compendium-browser.js"
+    "./compendium-browser.js"
   ],
   "styles": [
     "./styles/compendium-browser.css",

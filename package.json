@@ -1,0 +1,32 @@
+{
+  "name": "compendium-browser",
+  "version": "1.0.0",
+  "description": "A browser with simple UI to browse and filter entites from a compendium in FoundryVTT",
+  "main": "compendium-browser.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "all": "npm run copyfiles && npm run less && npm run tsc && npm run cleancss && npm run jsdoc",
+    "copyfiles": "copyfiles ./template/*.hbs ./dist",
+    "less": "lessc ./styles/compendium-browser.less ./dist/styles/compendium-browser.css",
+    "tsc": "tsc",
+    "cleancss": "cleancss -o ./dist/styles/compendium-browser.min.css ./dist/styles/compendium-browser.css",
+    "jsdoc": "jsdoc -r . -d ./docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielBoettner/compendium-browser.git"
+  },
+  "keywords": [
+    "FoundryVTT",
+    "node",
+    "javascript"
+  ],
+  "author": "Daniel Böttner",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DanielBoettner/compendium-browser/issues"
+  },
+  "homepage": "https://github.com/DanielBoettner/compendium-browser#readme"
+}

@@ -1,0 +1,28 @@
+<div class="parent">
+    <div class="tabs">
+        {{#if showItemBrowser}}<a class="item" data-tab="Item" title="{{localize 'CMPBrowser.Tab.ItemBrowser'}}"><i class="fas fa-suitcase"></i></a>{{/if}}
+        {{#if showSpellBrowser}}<a class="item" data-tab="Spell" title="{{localize 'CMPBrowser.Tab.SpellBrowser'}}"><i class="fas fa-magic"></i></a>{{/if}}
+        {{#if showFeatBrowser}}<a class="item" data-tab="Feat" title="{{localize "CMPBrowser.Tab.FeatBrowser"}}"><i class="fas fa-octopus-deploy"></i></a>{{/if}}
+        {{#if showActorBrowser}}<a class="item" data-tab="Actor" title="{{localize 'CMPBrowser.Tab.ActorBrowser'}}"><i class="fas fa-user"></i></a>{{/if}}
+        {{#if showJournalEntryBrowser}}<a class="item" data-tab="JournalEntry" title="{{localize 'CMPBrowser.Tab.JournalEntryBrowser'}}"><i class="fas fa-book-open"></i></a>{{/if}}
+        {{#if showRollTableBrowser}}<a class="item" data-tab="RollTable" title="{{localize 'CMPBrowser.Tab.RollTableBrowser'}}"><i class="fas fa-th-list"></i></a>{{/if}}
+        {{#if isGM}}<a class="item" data-tab="Settings" title="{{localize 'CMPBrowser.Tab.Settings'}}"><i class="fas fa-cogs"></i></a>{{/if}}
+    </div>
+    <aside class="actions">
+        <nav>
+            <ul>
+                <li><button data-action="export" data-action-target="table"><i class="fas fa-th-list"></i>Export 2 Table</button></li>
+                <li id="CBInfoMessage"></li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="content">
+            {{#if showSpellBrowser}}<div class="tab" data-tab="Spell">{{> "modules/compendium-browser/template/entity-browser.hbs" filters=filters.Spell}}</div>{{/if}}
+            {{#if showFeatBrowser}}<div class="tab" data-tab="Feat">{{> "modules/compendium-browser/template/entity-browser.hbs" filters=filters.Feat}}</div>{{/if}}
+            {{#if showItemBrowser}}<div class="tab" data-tab="Item">{{> "modules/compendium-browser/template/entity-browser.hbs" filters=filters.Item}}</div>{{/if}}
+            {{#if showActorBrowser}}<div class="tab" data-tab="Actor">  {{> "modules/compendium-browser/template/entity-browser.hbs" filters=filters.Actor}}</div>{{/if}}
+            {{#if showJournalEntryBrowser}}<div class="tab" data-tab="JournalEntry">  {{> "modules/compendium-browser/template/entity-browser.hbs" filters=filters.JournalEntry}}</div>{{/if}}
+            {{#if showRollTableBrowser}}<div class="tab" data-tab="RollTable">{{> "modules/compendium-browser/template/entity-browser.hbs" filters=filters.RollTable}}</div>{{/if}}
+            {{#if isGM}}<div class="tab" data-tab="Settings">{{> "modules/compendium-browser/template/settings.hbs"}}</div>{{/if}}
+    </div>
+</div>

@@ -1,0 +1,60 @@
+{{#each entityItems as |entity|}}
+<li class="entity flexrow draggable r_{{entity.rarity}}" data-entry-compendium="{{entity.compendium}}"
+    data-entry-id="{{entity._id}}" data-entry-name="{{entity.name}}" data-entry-image="{{entity.img}}"
+    data-entry-type="{{entity.type}}">
+
+    <aside class="entity-image" data-action="openSheet" data-src="{{entity.img}}" title="{{entity.name}}">
+        <i class="fas fa-d20"></i>
+    </aside>
+
+    <div class="entity-name" data-action="openSheet">
+        <span class="entity-edit"><a title="({{entity.compendium}})">{{entity.name}}</a></span>
+    </div>
+
+    <ul class="tags entity-tags">
+        <li title="Compmendium: {{entity.compendium}}"><i class="fas fa-book"></i></li>
+        {{#if entity.type}}
+        <li title="Type: {{entity.type}}">
+            {{#switch entity.type}}
+            {{#case 'backpack'}}<i class="fas fa-boxes"></i>{{/case}}
+            {{#case 'consumable'}}<i class="fas fa-cookie-bite"></i>{{/case}}
+            {{#case 'equipment'}}<i class="fas fa-tshirt"></i>{{/case}}
+            {{#case 'tool'}}<i class="fas fa-tools"></i>{{/case}}
+            {{#case 'loot'}}<i class="fas fa-gem"></i>{{/case}}
+            {{#case 'weapon'}}<i class="fas fa-crosshairs"></i>{{/case}}
+            {{#case 'RollTable'}}<i class="fas fa-table" {{#if entity.flags.better-rolltables}}style="color: green;"{{/if}}></i>{{/case}}
+            {{#default ''}}{{entity.type}}{{/default}}
+            {{/switch}}
+        </li>
+        {{/if}}
+        {{#if entity.dae}}<li title="has DAE effects" data-tag-dae="true"><i
+                class="fab fa-acquisitions-incorporated"></i></li>{{/if}}
+        {{#if entity.ac}}<li title="AC: {{entity.ac}}" data-tag-dae="true"><i
+                class="fas fa-shield-alt">{{entity.ac}}</i></li>{{/if}}
+
+        {{#each entity.tags as |value name|}}
+        <li class="filtered" data-tag-type="{{name}}" data-tag-value="{{value}}">
+            {{#if (eq name "range")}}<i class="fas fa-ruler"></i>{{value}}{{/if}}
+        </li>
+        {{/each}}
+    </ul>
+    {{#if entity.classRequirement}}
+    <ul class="tags misc-tags">
+        {{#each entity.classRequirement as | class |}}
+        <li title="Class Requirement: {{class}}"><i class="fab fa-rust"></i></li>
+        {{/each}}
+    </ul>
+    {{/if}}
+    {{#if (eq entity.type 'spell')}}
+    <ul class="tags spell-tags">
+        <li title="Spell level">{{#if entity.data.level}}{{entity.data.level}}{{else}}C{{/if}}</li>
+        <li {{#if entity.data.components.ritual}}class="active-tag"{{/if}} title="{{localize "CMPBrowser.ritual"}}">R</li>
+        <li {{#if entity.data.components.concentration}}class="active-tag"{{/if}} title="{{localize "CMPBrowser.concentration"}}">C</li>
+        <li {{#if entity.data.components.vocal}}class="active-tag"{{/if}} title="{{localize "CMPBrowser.vocal"}}">V</li>
+        <li {{#if entity.data.components.somatic}}class="active-tag"{{/if}} title="{{localize "CMPBrowser.somatic"}}">S</li>
+        <li {{#if entity.data.components.material}}class="active-tag"{{/if}} title="{{localize "CMPBrowser.material"}}">M</li>
+    </ul>
+    {{/if}}
+    <input type="hidden" name="type" value="{{entity.type}}">
+</li>
+{{/each}}

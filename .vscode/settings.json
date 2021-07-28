@@ -1,0 +1,21 @@
+{
+    "typescript.tsdk": "C:\\Users\\jackp\\AppData\\Local\\FoundryVTT\\Data\\systems\\dnd5e\\module",
+    "debug.javascript.usePreview": false,
+    "triggerTaskOnSave.tasks": {
+        "watch: reload": [
+            "dist/**/*.js",
+            "dist/templates/**/*.hbs"
+        ],
+        "watch: less": [
+            "/styles/*.less"
+        ]
+    },
+    "triggerTaskOnSave.showStatusBarToggle": true,
+    "launches": {
+        "fvtt-debug": "FoundryVTT"
+    },
+    "includePath": [
+        "C:\\Program Files\\FoundryVTT\\resources\\app",
+        "C:\\Users\\jackp\\AppData\\Local\\FoundryVTT\\Data\\systems\\dnd5e\\module"
+    ]
+}

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: dist/hooks - Kopie/moduleHooks.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: dist/hooks - Kopie/moduleHooks.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @fileOverview Holding the modules Hooks
+ *
+ * @author Daniel Böttner &lt;jackprince1983@gmail.com>
+ * @version 1.0.0
+ */
+/* jshint node: true */
+'use strict';
+import { CMPBrowser } from '../scripts/modules/settings.js';
+import { CompendiumBrowser } from '../scripts/compendium-browser.js';
+import { VersionCheck } from '../scripts/versioning/version-check.js';
+import { Renderer } from '../scripts/modules/renderer.js';
+/**
+ * Holds the static methods to be called
+ */
+export default class moduleHooks {
+    static onInit() {
+        Hooks.on('init', async () => {
+            Handlebars.registerHelper('switch', function (value, options) {
+                this.switch_value = value;
+                this.switch_break = false;
+                return options.fn(this);
+            });
+            Handlebars.registerHelper('case', function (value, options) {
+                if (value == this.switch_value) {
+                    this.switch_break = true;
+                    return options.fn(this);
+                }
+            });
+            Handlebars.registerHelper('default', function (value, options) {
+                if (this.switch_break == false) {
+                    return value;
+                }
+            });
+            Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
+                switch (operator) {
+                    case '==':
+                        return (v1 == v2) ? options.fn(this) : options.inverse(this);
+                    case '===':
+                        return (v1 === v2) ? options.fn(this) : options.inverse(this);
+                    case '!=':
+                        return (v1 != v2) ? options.fn(this) : options.inverse(this);
+                    case '!==':
+                        return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+                    case '&lt;':
+                        return (v1 &lt; v2) ? options.fn(this) : options.inverse(this);
+                    case '&lt;=':
+                        return (v1 &lt;= v2) ? options.fn(this) : options.inverse(this);
+                    case '>':
+                        return (v1 > v2) ? options.fn(this) : options.inverse(this);
+                    case '>=':
+                        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+                    case '&amp;&amp;':
+                        return (v1 &amp;&amp; v2) ? options.fn(this) : options.inverse(this);
+                    case '||':
+                        return (v1 || v2) ? options.fn(this) : options.inverse(this);
+                    default:
+                        return options.inverse(this);
+                }
+            });
+            Handlebars.registerHelper("debug", function (optionalValue) {
+                console.log("Current Context");
+                console.log("====================");
+                console.log(this);
+                if (optionalValue) {
+                    console.log("Value");
+                    console.log("====================");
+                    console.log(optionalValue);
+                }
+            });
+        });
+    }
+    static onReady() {
+        Hooks.on('ready', async () => {
+            if (game.compendiumBrowser === undefined) {
+                game.compendiumBrowser = new CompendiumBrowser();
+                //0.4.0 Defer loading content until we actually use the Compendium Browser
+                //A compromise approach would be better (periodic loading) except would still create the memory use problem
+                await game.compendiumBrowser.initialize();
+            }
+            if (VersionCheck.check(CMPBrowser.MODULE_NAME) &amp;&amp; game.user.isGM) {
+                console.log('version check');
+            }
+        });
+    }
+    static onRenderComplete() {
+        Hooks.on("renderCompendiumBrowser", Renderer.afterRender);
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Filter.html">Filter</a></li><li><a href="module.exports.html">exports</a></li><li><a href="VersionCheck.html">VersionCheck</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.7</a> on Fri Jul 23 2021 16:03:38 GMT+0200 (Mitteleuropäische Sommerzeit)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

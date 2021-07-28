@@ -1,0 +1,66 @@
+<div class="settings">
+    <div class="settings-group general-settings">
+        <h3>{{localize "CMPBrowser.generalSettings"}}</h3>
+        <label>
+            <input data-setting="allow-item-browser" data-type="Item" type="checkbox" {{#if settings.allowItemBrowser}}checked{{/if}}>
+            Allow Players Access to the item browser 
+        </label>
+        <label>
+            <input data-setting="allow-spell-browser" data-type="Spell" type="checkbox" {{#if settings.allowSpellBrowser}}checked{{/if}}>
+            {{localize "CMPBrowser.allowSpellAcc"}}
+        </label>
+        <label>
+            <input data-setting="allow-feat-browser" data-type="Feat" type="checkbox" {{#if settings.allowFeatBrowser}}checked{{/if}}>
+            Allow Players Access to the feat browser 
+        </label>        
+        <label>
+            <input data-setting="allow-actor-browser" data-type="Actor" type="checkbox" {{#if settings.allowActorBrowser}}checked{{/if}}>
+            {{localize "CMPBrowser.allowActorAcc"}}
+        </label>
+        <label>
+            <input data-setting="allow-rolltable-browser" data-type="Rolltable" type="checkbox" {{#if settings.allowRolltableBrowser}}checked{{/if}}>
+            {{localize "CMPBrowser.allowRolltable"}}
+        </label>
+        <label>
+            <input data-setting="allow-journalentry-browser" type="checkbox" {{#if settings.allowRolltableBrowser}}checked{{/if}}>
+            {{localize "CMPBrowser.allowJournalEntry"}}
+        </label>
+    </div>
+    
+    <div class="settings-group" data-entity-type="Item">
+        <h3>{{localize "CMPBrowser.compSettingsSpell"}}</h3>
+        {{#each settings.loadedCompendium.Item as |Comp key|}}
+            <label>
+                <input data-setting="spell-compendium-setting" data-key="{{key}}" data-type="spell" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
+            </label>
+        {{/each}}
+    </div>
+    <div class="settings-group" data-entity-type="Actor">
+        <h3>{{localize "CMPBrowser.compSettingsActor"}}</h3>
+        {{#each settings.loadedCompendium.Actor as |Comp key|}}
+            <label>
+                <input data-setting="npc-compendium-setting" data-key="{{key}}" data-type="npc" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
+            </label>
+        {{/each}}
+    </div>
+    <div class="settings-group" data-entity-type="JournalEntry">
+        <h3>{{localize "CMPBrowser.compSettingsJournalEntry"}}</h3>
+        {{#each settings.loadedCompendium.JournalEntry as |Comp key|}}
+            <label>
+                <input data-setting="npc-compendium-setting" data-key="{{key}}" data-type="npc" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
+            </label>
+        {{/each}}
+    </div>
+    <div class="settings-group" data-entity-type="Rolltable">
+        <h3>{{localize "CMPBrowser.compSettingsRolltable"}}</h3>
+        {{#each settings.loadedCompendium.Rolltable as |Comp key|}}
+            <label>
+                <input data-setting="npc-compendium-setting" data-key="{{key}}" data-type="npc" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
+            </label>
+        {{/each}}
+    </div>
+</div>

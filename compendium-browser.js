@@ -1,6 +1,6 @@
-import { moduleHooks } from './hooks/mainHook.js';
-//import { Settings } from './scripts/modules/settings.mjs';
-
+'use strict';
+/* jshint node: true */
+import moduleHooks from './hooks/moduleHooks.js';
 
 moduleHooks.onInit();
 moduleHooks.onReady();

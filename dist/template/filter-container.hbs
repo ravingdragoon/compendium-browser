@@ -1,0 +1,111 @@
+<input type="checkbox" class="toggler" />
+<section id="cb_filtercontainer">
+    <section class="filtercontainer" id="tagfilter">
+        <div class="filter" data-type="text" data-path="name">
+            <input class="" name="textFilter" type="text" value="" data-dtype="String" placeholder="{{localize "
+                Name"}}" />
+        </div>
+        <dl id="sorter">
+            <dt>{{localize "CMPBrowser.sortBy"}}:</dt>
+            <dd>
+                <select class="null" name="sortorder">
+                    <option value="true" selected>{{localize "Name"}}</option>
+                    {{#if (eq entityType 'Item')}}
+                    <option value="false">{{localize "DND5E.Type"}}</option>
+                    {{/if}}
+                    {{#if (eq entityType 'Spell')}}
+                    <option value="false">{{localize "DND5E.ItemTypeClass"}}</option><!-- feat -->
+                    {{/if}}
+                    {{#if (eq entityType 'Feat')}}
+                    <option value="false">{{localize "CMPBrowser.lvl"}}</option>
+                    {{/if}}
+                    {{#if (eq entityType 'Actor')}}
+                    <option value="cr">{{localize "CMPBrowser.cr"}}</option>
+                    <option value="size">{{localize "DND5E.Size"}}</option>
+                    {{/if}}
+                </select>
+            </dd>
+        </dl>
+        <button id="reset-item-filter" data-action="reset-filters">{{localize
+            "CMPBrowser.Filters.ResetFilters"}}</button>
+    </section>
+
+    {{#each filters.registeredFilterCategorys as |cat key|}}
+    <section class="filtercontainer" id="{{key}}">
+        <h3>{{cat.label}}</h3>
+        <div class="filters">
+            {{#each cat.filters as |filter key|}}
+            <div class="filter" data-path="{{filter.path}}" data-type="{{filter.type}}"
+                data-val-Is-Array="{{filter.valIsArray}}">
+                {{#if filter.is_text}}
+                <dt>{{filter.label}}</dt>
+                <dd>
+                    {{#if filter.possibleValues}}
+                    <select class="null">
+                        <option value="" selected>-</option>
+                        {{#each filter.possibleValues as |label val|}}
+                        <option value="{{val}}">{{label}}</option>
+                        {{/each}}
+                    </select>
+                    {{else}}
+                    <input type="text">
+                    {{/if}}
+                </dd>
+                {{/if}}
+                {{#if filter.is_bool}}
+                <dl>
+                    <dt>{{filter.label}}</dt>
+                    <dd>
+                        <select class="null">
+                            <option value="null" selected>-</option>
+                            <option value="true">{{localize "Yes"}}</option>
+                            <option value="false">{{localize "No"}}</option>
+                        </select>
+                    </dd>
+                </dl>
+                {{/if}}
+                {{#if filter.is_select}}
+                <dl>
+                    <dt>{{filter.label}}</dt>
+                    <dd>
+                        <select class="null">
+                            <option value="null" selected>-</option>
+                            {{#each filter.possibleValues as |label val|}}
+                            <option value="{{val}}">{{label}}</option>
+                            {{/each}}
+                        </select>
+                    </dd>
+                </dl>
+                {{/if}}
+                {{#if filter.is_multiSelect}}
+                <div class="multiselect">
+                    <label>{{filter.label}}</label>
+                    <dl>
+                        {{#each filter.possibleValues as |label val|}}
+
+                        <dt><label>{{label}}</label></dt>
+                        <dd><input type="checkbox" data-value="{{val}}"></dd>
+                        {{/each}}
+                    </dl>
+                </div>
+                {{/if}}
+                {{#if filter.is_numberCompare}}
+                <div class="numberCompare">
+                    <dt>{{filter.label}}</dt>
+                    <dd>
+                        <select class="small-select">
+                            <option value="null" selected>-</option>
+                            <option value="=">=</option>
+                            <option value="<">&lt;</option>
+                            <option value=">">&gt;</option>
+                        </select>
+                        <input class="small-input" type="number">
+                    </dd>
+                </div>
+                {{/if}}
+            </div>
+            {{/each}}
+        </div>
+    </section>
+    {{/each}}
+</section>
