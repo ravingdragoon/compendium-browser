@@ -42,7 +42,7 @@
                     Try showing compendium in the image mouseover
 12-Jun-2021 0.5.0   Test for Foundry 0.8.x in which creature type is now data.details.type.value                    
 9-Spt-2021  CHANGES Removed functions that are disabled in Foundry 0.9.0
-                    Speed up on spells by using quires
+                    Speed up on spells by using queries
                     Stops already in progress searches if a new one is started
                     Handles monster types from older revisions
                     Uses some built-ins for minor performance improvement
