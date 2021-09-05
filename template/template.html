@@ -6,12 +6,20 @@
         {{#if showNpcBrowser}}<a class="item" data-tab="npc">{{localize "CMPBrowser.Tab.NPCBrowser"}}</a>{{/if}}
         {{#if isGM}}<a class="item" data-tab="setting">{{localize "CMPBrowser.Tab.Settings"}}</a>{{/if}}
     </div>
-
+    <aside class="actions">
+        <nav>
+            <ul>
+                <li><button data-action="export" data-action-target="table" ><i class="fas fa-th-list"></i>Export</button></li>
+            </ul>
+        </nav>
+    </aside>
     <div class="content">
             <div class="tab" data-tab="spell">{{#if showSpellBrowser}}{{> "modules/compendium-browser/template/spell-browser.html"}}{{/if}}</div>
             <div class="tab" data-tab="feat">{{#if showFeatBrowser}}{{> "modules/compendium-browser/template/feat-browser.html"}}{{/if}}</div>
             <div class="tab" data-tab="item">{{#if showItemBrowser}}{{> "modules/compendium-browser/template/item-browser.html"}}{{/if}}</div>
             <div class="tab" data-tab="npc">{{#if showNpcBrowser}}  {{> "modules/compendium-browser/template/npc-browser.html"}}{{/if}}</div>
-            <div class="tab" data-tab="setting">{{#if isGM}}            {{> "modules/compendium-browser/template/settings.html"}}{{/if}}</div>
+            {{#if isGM}}
+                <div class="tab" data-tab="setting">{{> "modules/compendium-browser/template/settings.html"}}</div>
+            {{/if}}
     </div>
 </div>

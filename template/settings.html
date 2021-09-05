@@ -1,5 +1,5 @@
 <div class="settings">
-    <div class="settings-group">
+    <div class="settings-group general-settings">
         <h3>{{localize "CMPBrowser.generalSettings"}}</h3>
         <label>
             <input data-setting="allow-spell-browser" type="checkbox" {{#if settings.allowSpellBrowser}}checked{{/if}}>
@@ -19,21 +19,30 @@
         </label>
     </div>
     
-    <div class="settings-group">
+    <div class="settings-group" data-entity-type="Item">
         <h3>{{localize "CMPBrowser.compSettingsSpell"}}</h3>
-        {{#each settings.loadedSpellCompendium as |spellComp key|}}
+        {{#each settings.loadedCompendium.Item as |Comp key|}}
             <label>
-                <input data-setting="spell-compendium-setting" data-key="{{key}}" data-type="spell" type="checkbox"{{#if spellComp.load}}checked{{/if}}>
-                <h4>{{localize "CMPBrowser.load"}} {{spellComp.name}}</h4>
+                <input data-setting="spell-compendium-setting" data-key="{{key}}" data-type="spell" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
             </label>
         {{/each}}
     </div>
-    <div class="settings-group">
+    <div class="settings-group" data-entity-type="Actor">
         <h3>{{localize "CMPBrowser.compSettingsNpc"}}</h3>
-        {{#each settings.loadedNpcCompendium as |npcComp key|}}
+        {{#each settings.loadedCompendium.Actor as |Comp key|}}
             <label>
-                <input data-setting="npc-compendium-setting" data-key="{{key}}" data-type="npc" type="checkbox"{{#if npcComp.load}}checked{{/if}}>
-                <h4>{{localize "CMPBrowser.load"}} {{npcComp.name}}</h4>
+                <input data-setting="npc-compendium-setting" data-key="{{key}}" data-type="npc" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
+            </label>
+        {{/each}}
+    </div>
+    <div class="settings-group" data-entity-type="JournalEntry">
+        <h3>{{localize "CMPBrowser.compSettingsNpc"}}</h3>
+        {{#each settings.loadedCompendium.JournalEntry as |Comp key|}}
+            <label>
+                <input data-setting="npc-compendium-setting" data-key="{{key}}" data-type="npc" type="checkbox"{{#if Comp.load}}checked{{/if}}>
+                <h4>{{localize "CMPBrowser.load"}} {{Comp.name}}</h4>
             </label>
         {{/each}}
     </div>
