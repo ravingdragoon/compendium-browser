@@ -53,6 +53,8 @@
     "CMPBrowser.Tab.Settings": "Settings",
     "CMPBrowser.SETTING.Maxload.NAME": "Maximum load",
     "CMPBrowser.SETTING.Maxload.HINT": "Maximum number of spells, feats, items, or NPCs to display; to see more use the filters. This setting is to allow manageing memory and server load.",
+    "CMPBrowser.SETTING.ExtraButtons.NAME": "Include Extra Buttons",
+    "CMPBrowser.SETTING.ExtraButtons.HINT": "Adds extra button for quick access Compendium Browser in the Spellbook Tab and Feat Advancement window",
     "CMPBrowser.LOADING.Message": "Loading...{numLoaded} {itemType}s",
     "CMPBrowser.LOADED.Message": "Loaded {numLoaded} {itemType}s",
     "CMPBrowser.LOADED.MaxLoaded": "(maximum displayed; to see more, use the filters)",

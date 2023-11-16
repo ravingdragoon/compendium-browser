@@ -1345,6 +1345,14 @@ class CompendiumBrowser extends Application {
                 step: 100
             }
         });
+        game.settings.register(CMPBrowser.MODULE_NAME, "extrabuttons", {
+            name: game.i18n.localize("CMPBrowser.SETTING.ExtraButtons.NAME"),
+            hint: game.i18n.localize("CMPBrowser.SETTING.ExtraButtons.HINT"),
+            scope: "client",
+            config: true,
+            default: true,
+            type: Boolean
+        });
         
         // load settings from container and apply to default settings (available compendie might have changed)
         let settings = game.settings.get(CMPBrowser.MODULE_NAME, 'settings');
@@ -1945,9 +1953,13 @@ class CompendiumBrowser extends Application {
     static async addTidySheetButton(cb, html, actor){
 
         await html.find('.spell-browser-btn').remove();
+        const extrabuttons = game.settings.get(CMPBrowser.MODULE_NAME, "extrabuttons") ?? true;
+        if (!extrabuttons){
+            return;
+        }
 
         let tabBar = html.find("div.tab.spellbook .spellcasting-ability")
-        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><button class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></button></div>`);
+        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
 
         tabBar.append(cbButton)
 
@@ -1957,9 +1969,13 @@ class CompendiumBrowser extends Application {
     static async addDefaultSheetButton(cb, html, actor){
 
         await html.find('.spell-browser-btn').remove();
+        const extrabuttons = game.settings.get(CMPBrowser.MODULE_NAME, "extrabuttons") ?? true;
+        if (!extrabuttons){
+            return;
+        }
 
         let tabBar = html.find("div.spellbook-filters")
-        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><button class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></button></div>`);
+        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
         console.log(tabBar)
 
         tabBar.append(cbButton)
@@ -1986,8 +2002,13 @@ class CompendiumBrowser extends Application {
 
         await html.find('.feat-browser-btn').remove();
 
+        const extrabuttons = game.settings.get(CMPBrowser.MODULE_NAME, "extrabuttons") ?? true;
+        if (!extrabuttons){
+            return;
+        }
+
         let dropArea = html.find("div.drop-area")
-        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><button class="compendium-browser feat-browser-btn"><i class="fa-duotone fa-book"></i></button></div>`);
+        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a class="compendium-browser feat-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
 
         dropArea.append(cbButton)
 
