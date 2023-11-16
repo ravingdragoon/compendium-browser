@@ -1959,7 +1959,9 @@ class CompendiumBrowser extends Application {
         }
 
         let tabBar = html.find("div.tab.spellbook .spellcasting-ability")
-        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
+        const tooltip = game.i18n.localize("CMPBrowser.ToolTip.Spells") ?? "CMPBrowser.ToolTip.Spells"
+
+        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a title="${tooltip}" class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
 
         tabBar.append(cbButton)
 
@@ -1975,7 +1977,9 @@ class CompendiumBrowser extends Application {
         }
 
         let tabBar = html.find("div.spellbook-filters")
-        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
+        const tooltip = game.i18n.localize("CMPBrowser.ToolTip.Spells") ?? "CMPBrowser.ToolTip.Spells"
+
+        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a title="${tooltip}" class="compendium-browser spell-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
         console.log(tabBar)
 
         tabBar.append(cbButton)
@@ -2006,9 +2010,9 @@ class CompendiumBrowser extends Application {
         if (!extrabuttons){
             return;
         }
-
+        const tooltip = game.i18n.localize("CMPBrowser.ToolTip.Feats") ?? "CMPBrowser.ToolTip.Feats"
         let dropArea = html.find("div.drop-area")
-        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a class="compendium-browser feat-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
+        const cbButton = $(`<div style="max-width:40px;min-width:32px;"><a title="${tooltip}" class="compendium-browser feat-browser-btn"><i class="fa-duotone fa-book"></i></a></div>`);
 
         dropArea.append(cbButton)
 
