@@ -494,6 +494,8 @@ class CompendiumBrowser extends Application {
         let unfoundSpells = '';
         let numItemsLoaded = 0;
         let compactItems = {};
+        const Features = ["feat","class","subclass", "background", "race"];
+        const NotItems = ["spell", "feat","class","subclass", "background", "race"];
 
         try{
             //Filter the full list, but only save the core compendium information + displayed info 
@@ -554,7 +556,7 @@ class CompendiumBrowser extends Application {
 
                                 const decoratedItem = this.decorateItem(item5e);
 
-                                if(decoratedItem && ["feat","class","subclass", "background"].includes(decoratedItem.type) && this.passesFilter(decoratedItem, this.featFilters.activeFilters)){
+                                if(decoratedItem && Features.includes(decoratedItem.type) && this.passesFilter(decoratedItem, this.featFilters.activeFilters)){
                                     itemsList[item5e.id] = {
                                         compendium : pack.collection,
                                         name : decoratedItem.name,
@@ -581,7 +583,7 @@ class CompendiumBrowser extends Application {
 
                                 const decoratedItem = this.decorateItem(item5e);
 
-                                if(decoratedItem && !["spell","feat","class","subclass", "background"].includes(decoratedItem.type) && this.passesFilter(decoratedItem, this.itemFilters.activeFilters)){
+                                if(decoratedItem && !NotItems.includes(decoratedItem.type) && this.passesFilter(decoratedItem, this.itemFilters.activeFilters)){
                                     itemsList[item5e.id] = {
                                         compendium : pack.collection,
                                         name : decoratedItem.name,
@@ -1608,6 +1610,9 @@ class CompendiumBrowser extends Application {
         if (CompendiumBrowser.isFoundryV10Plus) {
             featureTypes.subclass = "ITEM.TypeSubclass";
             featureTypes.background = "DND5E.Background";
+        }
+        if (CompendiumBrowser.isFoundryV11Plus) {
+            featureTypes.race = "DND5E.Race";
         }
 
         this.addFeatFilter("CMPBrowser.general", "CMPBrowser.overall", 'type', 'select',
